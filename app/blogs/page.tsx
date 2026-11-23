@@ -1,6 +1,5 @@
 
 import Navbar from "@/_components/navbar";
-import blogs from "@/_components/blogs";
 import Footer from "@/_components/footer";
 
 export default function AnalyticsPage() {

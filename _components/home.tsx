@@ -3,40 +3,16 @@
 import Image from "next/image";
 import  RollingClock from "@/_components/RollingClock"
 import  ContributionGraph from "@/_components/contribution-graph";
-import { useEffect, useState } from "react";
-import { Clock, MapPin, Image as UserRound, Mail, Download} from "lucide-react";
+import { Clock, MapPin, Mail, Download } from "lucide-react";
 import {FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import { FaMediumM} from "react-icons/fa";
 import { ThreeDIconButton } from "@/_components/3d-button";
 import { MarqueeDemo } from "./marquee-demo";
 import { FrameTag } from "./frame-tag";
 import PixelArtVideo from "./pixel-art";
-import me from "../public/profile/me.jpeg"
 import me1 from "../public/profile/profile.jpg"
 
 export default function Home() {
-  const [time, setTime] = useState("");
-
-  useEffect(() => {
-    const updateTime = () => {
-      setTime(
-        new Intl.DateTimeFormat("en-IN", {
-          timeZone: "Asia/Kolkata",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: true,
-        }).format(new Date())
-      );
-    };
-
-    updateTime();
-
-    const interval = setInterval(updateTime, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section id="home" className="space-y-5 -translate-y-2">
       {/* Scenery image */}

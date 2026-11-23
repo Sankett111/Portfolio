@@ -69,7 +69,6 @@ export default function ContributionGraph() {
   const [data, setData] = useState<ContributionData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [currentYear, setCurrentYear] = useState<number | null>(null);
   
   useEffect(() => {
     let cancelled = false;
@@ -106,11 +105,8 @@ export default function ContributionGraph() {
     };
   }, []);
 
-  useEffect(() => {
-  setCurrentYear(new Date().getFullYear());
-}, []);
-
   const weeks = data?.weeks ?? [];
+  const calendarYear = weeks.at(-1)?.contributionDays.at(-1)?.date.slice(0, 4);
   const monthLabels = getMonthLabels(weeks);
 
   return (
@@ -125,9 +121,11 @@ export default function ContributionGraph() {
             </h2>
           </div>
 
-          <span className="shrink-0 rounded-full border border-border bg-muted px-3 py-1.5 text-xs text-muted-foreground">
-            {currentYear ?? ""}
-          </span>
+          {calendarYear && (
+            <span className="shrink-0 rounded-full border border-border bg-muted px-3 py-1.5 text-xs text-muted-foreground">
+              {calendarYear}
+            </span>
+          )}
         </div>
 
         {/* Loading */}
@@ -219,6 +217,7 @@ export default function ContributionGraph() {
                         {week.contributionDays.map((day) => (
                           <div
                             key={day.date}
+                            style={{ gridRowStart: new Date(day.date).getUTCDay() + 1 }}
                             title={`${day.contributionCount} contribution${
                               day.contributionCount === 1 ? "" : "s"
                             } on ${new Date(

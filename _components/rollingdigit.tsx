@@ -1,14 +1,8 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
-
 export default function RollingDigit({ value }: { value: string }) {
-  const [digit, setDigit] = useState(Number(value));
-
-  useEffect(() => {
-    setDigit(Number(value));
-  }, [value]);
+  const digit = Number(value);
 
   return (
     <span className="relative inline-flex h-[1em] w-[0.55em] overflow-hidden">

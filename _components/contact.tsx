@@ -1,6 +1,6 @@
 "use client"
 import { FrameTag } from "./frame-tag";
-import {Mail,ArrowUpRight} from "lucide-react";
+import { Mail } from "lucide-react";
 import {FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import { FaMediumM} from "react-icons/fa";
 
